@@ -1,1 +1,1321 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHS Balewal – Government High School Balewal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --navy: #0a1f44;
+    --blue: #1152a3;
+    --sky: #2e86de;
+    --accent: #f9a825;
+    --gold: #e6a817;
+    --white: #ffffff;
+    --offwhite: #f4f7fc;
+    --light: #e8eef8;
+    --gray: #6b7a99;
+    --dark: #0d1b35;
+    --success: #27ae60;
+    --radius: 14px;
+    --shadow: 0 8px 32px rgba(10,31,68,0.13);
+    --shadow-sm: 0 2px 12px rgba(10,31,68,0.08);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 7px; }
+  ::-webkit-scrollbar-track { background: var(--light); }
+  ::-webkit-scrollbar-thumb { background: var(--sky); border-radius: 4px; }
+
+  /* ===== TOPBAR ===== */
+  .topbar {
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.78rem;
+    padding: 7px 0;
+  }
+  .topbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .topbar a { color: var(--accent); text-decoration: none; margin-left: 18px; }
+  .topbar span { margin-right: 14px; }
+  .topbar i { margin-right: 5px; }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    position: sticky; top: 0; z-index: 1000;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(10,31,68,0.18); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+  .logo { display: flex; align-items: center; gap: 13px; text-decoration: none; }
+  .logo-icon {
+    width: 52px; height: 52px; background: linear-gradient(135deg, var(--blue), var(--sky));
+    border-radius: 12px; display: grid; place-items: center; color: var(--white); font-size: 1.4rem;
+    box-shadow: 0 4px 14px rgba(17,82,163,0.35);
+  }
+  .logo-text .school-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--navy); line-height: 1.2; }
+  .logo-text .school-sub { font-size: 0.72rem; color: var(--gray); letter-spacing: 0.04em; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+  .nav-links a { color: var(--navy); text-decoration: none; font-size: 0.88rem; font-weight: 500; padding: 8px 13px; border-radius: 8px; transition: all 0.22s; position: relative; }
+  .nav-links a:hover, .nav-links a.active { color: var(--blue); background: var(--light); }
+  .nav-links .btn-nav { background: linear-gradient(135deg, var(--blue), var(--sky)); color: var(--white) !important; padding: 9px 20px !important; border-radius: 50px; box-shadow: 0 4px 14px rgba(17,82,163,0.3); }
+  .nav-links .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 7px 22px rgba(17,82,163,0.4); background: var(--light) !important; color: var(--blue) !important; }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+  .hamburger span { width: 24px; height: 2.5px; background: var(--navy); border-radius: 3px; transition: all 0.3s; display: block; }
+  .mobile-menu { display: none; flex-direction: column; background: var(--white); border-top: 1px solid var(--light); padding: 14px 0; }
+  .mobile-menu a { color: var(--navy); text-decoration: none; padding: 11px 20px; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid var(--light); display: block; transition: background 0.2s; }
+  .mobile-menu a:hover { background: var(--offwhite); color: var(--blue); }
+
+  /* ===== CONTAINER ===== */
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 22px; }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, var(--sky) 100%);
+    min-height: 92vh; display: flex; align-items: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='rgba(255,255,255,0.07)'/%3E%3C/g%3E%3C/svg%3E");
+    animation: bgFloat 18s linear infinite;
+  }
+  @keyframes bgFloat { 0%{transform:translateY(0)} 100%{transform:translateY(-80px)} }
+  .hero-shapes .shape {
+    position: absolute; border-radius: 50%; opacity: 0.07; animation: floatShape 8s ease-in-out infinite;
+  }
+  .shape1 { width: 340px; height: 340px; background: var(--white); top: -80px; right: -60px; animation-delay: 0s; }
+  .shape2 { width: 220px; height: 220px; background: var(--accent); bottom: -60px; left: 10%; animation-delay: 2s; }
+  .shape3 { width: 160px; height: 160px; background: var(--sky); top: 40%; right: 12%; animation-delay: 4s; }
+  @keyframes floatShape { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-24px) scale(1.04)} }
+
+  .hero-content { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 100px 0 80px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: var(--accent); padding: 8px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px; animation: fadeUp 0.8s ease 0.2s both; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.3rem); color: var(--white); line-height: 1.2; margin-bottom: 14px; animation: fadeUp 0.8s ease 0.4s both; }
+  .hero h1 span { color: var(--accent); }
+  .hero-tagline { font-size: 1.08rem; color: rgba(255,255,255,0.8); margin-bottom: 24px; animation: fadeUp 0.8s ease 0.6s both; font-style: italic; }
+  .hero-desc { font-size: 0.95rem; color: rgba(255,255,255,0.72); line-height: 1.75; margin-bottom: 36px; animation: fadeUp 0.8s ease 0.7s both; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.8s ease 0.9s both; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; text-decoration: none; cursor: pointer; border: none; transition: all 0.28s; }
+  .btn-primary { background: var(--accent); color: var(--navy); box-shadow: 0 6px 22px rgba(249,168,37,0.4); }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(249,168,37,0.5); }
+  .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); transform: translateY(-3px); }
+
+  .hero-visual { position: relative; animation: fadeLeft 1s ease 0.5s both; }
+  @keyframes fadeLeft { from{opacity:0;transform:translateX(40px)} to{opacity:1;transform:translateX(0)} }
+  .school-card {
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 24px; padding: 34px; color: var(--white); position: relative; overflow: hidden;
+  }
+  .school-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--sky)); }
+  .school-building {
+    width: 100%; height: 200px; border-radius: 14px; margin-bottom: 20px;
+    background: linear-gradient(135deg, #1a3a6b 0%, #0d2748 100%);
+    display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+  }
+  .building-svg { width: 100%; height: 100%; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+  .stat-box { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 14px; text-align: center; }
+  .stat-box .num { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--accent); font-weight: 700; }
+  .stat-box .lbl { font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ===== SECTION HEADERS ===== */
+  .section { padding: 80px 0; }
+  .section-alt { background: var(--offwhite); }
+  .section-header { text-align: center; margin-bottom: 54px; }
+  .section-tag { display: inline-block; background: var(--light); color: var(--blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 16px; border-radius: 50px; margin-bottom: 14px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--navy); margin-bottom: 14px; }
+  .section-title span { color: var(--sky); }
+  .section-desc { color: var(--gray); max-width: 560px; margin: 0 auto; line-height: 1.75; font-size: 0.95rem; }
+  .divider { width: 60px; height: 4px; background: linear-gradient(90deg, var(--blue), var(--accent)); border-radius: 2px; margin: 16px auto 0; }
+
+  /* ===== QUICK STATS ===== */
+  .quick-stats { background: linear-gradient(135deg, var(--navy), var(--blue)); padding: 46px 0; }
+  .quick-stats .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .qstat { text-align: center; color: var(--white); }
+  .qstat .n { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--accent); font-weight: 800; }
+  .qstat .l { font-size: 0.85rem; color: rgba(255,255,255,0.72); margin-top: 4px; }
+
+  /* ===== ABOUT ===== */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .about-img { position: relative; }
+  .about-img-main {
+    width: 100%; height: 340px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+    display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .about-badge {
+    position: absolute; bottom: -22px; right: -22px;
+    background: var(--accent); color: var(--navy); border-radius: 16px;
+    padding: 18px 22px; font-family: 'Playfair Display', serif; font-weight: 700;
+    box-shadow: 0 8px 28px rgba(249,168,37,0.4); text-align: center;
+  }
+  .about-badge .years { font-size: 2rem; display: block; }
+  .about-badge .ytext { font-size: 0.75rem; font-family: 'DM Sans', sans-serif; }
+  .about-content h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 18px; }
+  .about-content p { color: var(--gray); line-height: 1.8; margin-bottom: 16px; font-size: 0.95rem; }
+  .about-loc { display: flex; align-items: center; gap: 10px; color: var(--blue); font-weight: 600; margin-bottom: 24px; }
+  .about-loc i { font-size: 1.1rem; }
+  .mv-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+  .mv-card { background: var(--offwhite); border-radius: 14px; padding: 20px; border-left: 4px solid var(--sky); }
+  .mv-card h4 { color: var(--navy); font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+  .mv-card h4 i { color: var(--sky); }
+  .mv-card p { color: var(--gray); font-size: 0.83rem; line-height: 1.65; }
+
+  /* ===== PORTALS ===== */
+  .portals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .portal-card { background: var(--white); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; transition: transform 0.3s; }
+  .portal-card:hover { transform: translateY(-6px); }
+  .portal-header { padding: 30px; color: var(--white); position: relative; overflow: hidden; }
+  .portal-header.student { background: linear-gradient(135deg, #1152a3, #2e86de); }
+  .portal-header.teacher { background: linear-gradient(135deg, #0a3d6b, #1a5f9e); }
+  .portal-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 6px; }
+  .portal-header p { opacity: 0.8; font-size: 0.85rem; }
+  .portal-icon { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-size: 3.5rem; opacity: 0.15; }
+  .portal-body { padding: 24px; }
+  .portal-menu { list-style: none; }
+  .portal-menu li { display: flex; align-items: center; gap: 13px; padding: 13px 14px; border-radius: 10px; cursor: pointer; transition: all 0.22s; font-size: 0.9rem; color: var(--dark); font-weight: 500; border-bottom: 1px solid var(--light); }
+  .portal-menu li:last-child { border-bottom: none; }
+  .portal-menu li:hover { background: var(--light); color: var(--blue); transform: translateX(5px); }
+  .portal-menu li i { width: 32px; height: 32px; background: var(--light); border-radius: 8px; display: grid; place-items: center; color: var(--blue); font-size: 0.88rem; flex-shrink: 0; transition: all 0.22s; }
+  .portal-menu li:hover i { background: var(--blue); color: var(--white); }
+  .portal-footer { padding: 0 24px 24px; }
+  .btn-portal { width: 100%; padding: 13px; border-radius: 12px; border: none; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-portal.student { background: linear-gradient(135deg, var(--blue), var(--sky)); color: var(--white); }
+  .btn-portal.teacher { background: linear-gradient(135deg, #0a3d6b, var(--blue)); color: var(--white); }
+  .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(17,82,163,0.3); }
+
+  /* ===== MODAL / DASHBOARD ===== */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,31,68,0.6); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.active { display: flex; }
+  .modal { background: var(--white); border-radius: 20px; width: 100%; max-width: 680px; max-height: 88vh; overflow-y: auto; position: relative; animation: modalIn 0.35s ease; }
+  @keyframes modalIn { from{opacity:0;transform:scale(0.92) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+  .modal-head { padding: 28px 32px 20px; border-bottom: 1px solid var(--light); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: var(--white); border-radius: 20px 20px 0 0; z-index: 1; }
+  .modal-head h2 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1.4rem; }
+  .modal-close { width: 36px; height: 36px; border-radius: 50%; background: var(--light); border: none; cursor: pointer; font-size: 1rem; color: var(--gray); display: grid; place-items: center; transition: all 0.2s; }
+  .modal-close:hover { background: #fde8e8; color: #e74c3c; }
+  .modal-body { padding: 28px 32px; }
+  .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 24px; }
+  .dash-card { background: var(--offwhite); border-radius: 14px; padding: 18px; border-left: 4px solid var(--sky); }
+  .dash-card h4 { font-size: 0.82rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .dash-card .val { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--navy); font-weight: 700; }
+  .dash-card.green { border-color: var(--success); }
+  .dash-card.amber { border-color: var(--accent); }
+  .dash-card.red { border-color: #e74c3c; }
+  .att-bar { height: 8px; background: var(--light); border-radius: 4px; overflow: hidden; margin: 12px 0 4px; }
+  .att-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--success), #2ecc71); }
+  .subject-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .subject-table th { background: var(--navy); color: var(--white); padding: 10px 14px; text-align: left; font-weight: 600; }
+  .subject-table td { padding: 10px 14px; border-bottom: 1px solid var(--light); color: var(--dark); }
+  .subject-table tr:last-child td { border-bottom: none; }
+  .subject-table tr:nth-child(even) td { background: var(--offwhite); }
+  .badge-grade { display: inline-block; padding: 3px 10px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; }
+  .grade-a { background: #d5f5e3; color: #1e8449; }
+  .grade-b { background: #d6eaf8; color: #1a5f9e; }
+  .grade-c { background: #fef9e7; color: #b7770d; }
+  .hw-item { background: var(--offwhite); border-radius: 12px; padding: 16px; margin-bottom: 12px; border-left: 4px solid var(--sky); display: flex; justify-content: space-between; align-items: flex-start; }
+  .hw-info h4 { font-size: 0.92rem; color: var(--navy); margin-bottom: 4px; }
+  .hw-info p { font-size: 0.8rem; color: var(--gray); }
+  .hw-due { font-size: 0.78rem; background: var(--accent); color: var(--navy); padding: 4px 12px; border-radius: 50px; font-weight: 600; white-space: nowrap; }
+
+  /* ===== ADMISSION FORM ===== */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 0.83rem; font-weight: 600; color: var(--navy); margin-bottom: 7px; display: flex; align-items: center; gap: 6px; }
+  .form-group label i { color: var(--sky); }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 12px 16px; border: 2px solid var(--light); border-radius: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--dark);
+    background: var(--white); outline: none; transition: all 0.25s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--sky); box-shadow: 0 0 0 4px rgba(46,134,222,0.1); }
+  .form-group input::placeholder { color: #bac4d6; }
+  .upload-area { border: 2px dashed var(--light); border-radius: 12px; padding: 28px; text-align: center; cursor: pointer; transition: all 0.25s; background: var(--offwhite); }
+  .upload-area:hover { border-color: var(--sky); background: var(--light); }
+  .upload-area i { font-size: 2rem; color: var(--sky); margin-bottom: 10px; display: block; }
+  .upload-area p { font-size: 0.85rem; color: var(--gray); }
+  .upload-area strong { color: var(--blue); }
+  .form-submit { text-align: center; margin-top: 10px; }
+  .btn-submit { background: linear-gradient(135deg, var(--blue), var(--sky)); color: var(--white); padding: 15px 50px; border-radius: 50px; border: none; font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 8px 28px rgba(17,82,163,0.35); transition: all 0.28s; letter-spacing: 0.03em; }
+  .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(17,82,163,0.45); }
+
+  /* ===== NOTICE BOARD ===== */
+  .notices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .notice-card { background: var(--white); border-radius: 16px; box-shadow: var(--shadow-sm); padding: 22px; border-top: 4px solid var(--sky); transition: all 0.3s; cursor: pointer; }
+  .notice-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .notice-card.urgent { border-top-color: #e74c3c; }
+  .notice-card.event { border-top-color: var(--accent); }
+  .notice-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .notice-badge { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 12px; border-radius: 50px; }
+  .nb-info { background: #d6eaf8; color: var(--blue); }
+  .nb-urgent { background: #fde8e8; color: #e74c3c; }
+  .nb-event { background: #fef9e7; color: #b7770d; }
+  .notice-date { font-size: 0.78rem; color: var(--gray); }
+  .notice-card h4 { font-size: 0.95rem; color: var(--navy); font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+  .notice-card p { font-size: 0.83rem; color: var(--gray); line-height: 1.65; }
+
+  /* ===== GALLERY ===== */
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 14px; }
+  .gallery-item { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; }
+  .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+  .gallery-img { width: 100%; height: 100%; min-height: 160px; display: flex; align-items: center; justify-content: center; position: relative; transition: transform 0.4s; }
+  .gallery-item:hover .gallery-img { transform: scale(1.05); }
+  .gallery-item:first-child .gallery-img { min-height: 300px; }
+  .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,31,68,0.8) 0%, transparent 60%); display: flex; align-items: flex-end; padding: 18px; opacity: 0; transition: opacity 0.3s; }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-label { color: var(--white); font-size: 0.85rem; font-weight: 600; }
+
+  /* Gallery placeholder colours */
+  .gi1 { background: linear-gradient(135deg, #1a3a6b, #2e86de); }
+  .gi2 { background: linear-gradient(135deg, #0d5c3a, #27ae60); }
+  .gi3 { background: linear-gradient(135deg, #6a0dad, #9b59b6); }
+  .gi4 { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .gi5 { background: linear-gradient(135deg, #e67e22, #f39c12); }
+  .gallery-icon { font-size: 3rem; color: rgba(255,255,255,0.25); }
+
+  /* ===== CONTACT ===== */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .contact-cards { display: grid; gap: 16px; }
+  .contact-card { background: var(--white); border-radius: 16px; box-shadow: var(--shadow-sm); padding: 22px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.3s; }
+  .contact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .contact-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--blue), var(--sky)); display: grid; place-items: center; color: var(--white); font-size: 1.1rem; flex-shrink: 0; }
+  .contact-info h4 { font-size: 0.92rem; color: var(--navy); font-weight: 700; margin-bottom: 5px; }
+  .contact-info p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+  .contact-info a { color: var(--blue); text-decoration: none; }
+  .map-placeholder { background: linear-gradient(135deg, var(--light), #d0ddf5); border-radius: 20px; height: 360px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: var(--blue); box-shadow: var(--shadow-sm); position: relative; overflow: hidden; }
+  .map-placeholder i { font-size: 3rem; opacity: 0.5; }
+  .map-placeholder p { font-size: 0.9rem; color: var(--gray); text-align: center; max-width: 220px; }
+  .map-pin { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%); animation: pinBounce 1.8s ease-in-out infinite; }
+  .map-pin i { font-size: 2.5rem; color: #e74c3c; }
+  @keyframes pinBounce { 0%,100%{transform:translate(-50%,-60%)} 50%{transform:translate(-50%,-80%)} }
+
+  /* ===== LOGIN MODAL ===== */
+  .login-tabs { display: flex; border-bottom: 2px solid var(--light); margin-bottom: 28px; }
+  .login-tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; font-weight: 600; color: var(--gray); border-bottom: 3px solid transparent; transition: all 0.25s; font-size: 0.9rem; margin-bottom: -2px; }
+  .login-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+  .login-form { display: none; }
+  .login-form.active { display: block; }
+  .login-logo { text-align: center; margin-bottom: 24px; }
+  .login-logo .logo-icon { width: 64px; height: 64px; border-radius: 16px; font-size: 1.8rem; margin: 0 auto 12px; }
+  .login-logo h3 { font-family: 'Playfair Display', serif; color: var(--navy); }
+  .login-logo p { font-size: 0.85rem; color: var(--gray); margin-top: 4px; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--navy); color: rgba(255,255,255,0.75); padding: 60px 0 0; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 44px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .footer-brand .logo { margin-bottom: 16px; display: inline-flex; }
+  .footer-brand p { font-size: 0.88rem; line-height: 1.75; max-width: 300px; }
+  .footer-col h4 { color: var(--white); font-size: 0.9rem; font-weight: 700; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.87rem; transition: color 0.2s; display: flex; align-items: center; gap: 7px; }
+  .footer-col ul li a:hover { color: var(--accent); }
+  .footer-col ul li a i { font-size: 0.75rem; color: var(--sky); }
+  .footer-newsletter p { font-size: 0.87rem; margin-bottom: 14px; }
+  .newsletter-form { display: flex; gap: 0; }
+  .newsletter-form input { flex: 1; padding: 11px 16px; border: none; border-radius: 10px 0 0 10px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; outline: none; }
+  .newsletter-form button { padding: 11px 16px; background: var(--accent); border: none; border-radius: 0 10px 10px 0; cursor: pointer; color: var(--navy); font-weight: 700; transition: background 0.2s; }
+  .newsletter-form button:hover { background: var(--gold); }
+  .footer-bottom { text-align: center; padding: 22px 0; font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+  .footer-bottom a { color: var(--accent); text-decoration: none; }
+
+  /* ===== TOAST ===== */
+  .toast { position: fixed; bottom: 28px; right: 28px; background: var(--success); color: var(--white); padding: 15px 22px; border-radius: 12px; font-size: 0.9rem; font-weight: 500; display: none; align-items: center; gap: 10px; z-index: 9999; box-shadow: 0 8px 28px rgba(0,0,0,0.18); animation: toastIn 0.35s ease; }
+  .toast.show { display: flex; }
+  @keyframes toastIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ===== BACK TO TOP ===== */
+  .back-top { position: fixed; bottom: 28px; left: 28px; width: 44px; height: 44px; background: var(--blue); color: var(--white); border-radius: 12px; display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow); transition: all 0.3s; opacity: 0; pointer-events: none; z-index: 900; text-decoration: none; }
+  .back-top.visible { opacity: 1; pointer-events: all; }
+  .back-top:hover { background: var(--navy); transform: translateY(-3px); }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width: 1024px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .quick-stats .container { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media(max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu.open { display: flex; }
+    .hero-content { grid-template-columns: 1fr; gap: 36px; padding: 80px 0 60px; }
+    .hero-visual { display: none; }
+    .about-grid, .portals-grid, .contact-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .notices-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-column: span 2; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .quick-stats .container { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .mv-cards { grid-template-columns: 1fr; }
+    .dash-grid { grid-template-columns: 1fr; }
+  }
+  @media(max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:first-child { grid-column: span 1; }
+    .hero-btns { flex-direction: column; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .modal-body { padding: 20px; }
+    .modal-head { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div>
+      <span><i class="fa fa-phone"></i>+91-01881-XXXXXX</span>
+      <span><i class="fa fa-envelope"></i>ghsbalewal@punjab.gov.in</span>
+    </div>
+    <div>
+      <a href="#admission"><i class="fa fa-user-plus"></i>Apply Now</a>
+      <a href="#" onclick="openLogin()"><i class="fa fa-sign-in-alt"></i>Login</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon"><i class="fa fa-graduation-cap"></i></div>
+        <div class="logo-text">
+          <div class="school-name">GHS Balewal</div>
+          <div class="school-sub">Est. Punjab, India</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portals">Portals</a></li>
+        <li><a href="#notices">Notices</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#admission" class="btn-nav"><i class="fa fa-file-alt"></i> Admission</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home" onclick="toggleMenu()">Home</a>
+      <a href="#about" onclick="toggleMenu()">About</a>
+      <a href="#portals" onclick="toggleMenu()">Portals</a>
+      <a href="#notices" onclick="toggleMenu()">Notices</a>
+      <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+      <a href="#contact" onclick="toggleMenu()">Contact</a>
+      <a href="#admission" onclick="toggleMenu()">Admission</a>
+      <a href="#" onclick="openLogin(); toggleMenu()">Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-shapes">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge"><i class="fa fa-star"></i> Government Recognized School</div>
+        <h1>Government High School<br><span>Balewal</span></h1>
+        <p class="hero-tagline">"Empowering Education for a Better Future"</p>
+        <p class="hero-desc">
+          Nestled in Block Takhtgarh, District Rupnagar, Punjab — GHS Balewal has been a beacon of quality education,
+          nurturing young minds with knowledge, values, and the skills to thrive in the modern world.
+        </p>
+        <div class="hero-btns">
+          <a href="#admission" class="btn btn-primary"><i class="fa fa-file-alt"></i> Apply for Admission</a>
+          <a href="#about" class="btn btn-outline"><i class="fa fa-info-circle"></i> Learn More</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="school-card">
+          <div class="school-building">
+            <!-- School building SVG illustration -->
+            <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" class="building-svg">
+              <!-- Sky -->
+              <rect width="380" height="200" fill="#0d2748"/>
+              <!-- Stars -->
+              <circle cx="30" cy="20" r="1.5" fill="rgba(255,255,255,0.7)"/>
+              <circle cx="80" cy="35" r="1" fill="rgba(255,255,255,0.5)"/>
+              <circle cx="140" cy="15" r="1.5" fill="rgba(255,255,255,0.6)"/>
+              <circle cx="210" cy="28" r="1" fill="rgba(255,255,255,0.5)"/>
+              <circle cx="280" cy="12" r="1.5" fill="rgba(255,255,255,0.7)"/>
+              <circle cx="340" cy="30" r="1" fill="rgba(255,255,255,0.4)"/>
+              <circle cx="360" cy="18" r="1.5" fill="rgba(255,255,255,0.6)"/>
+              <!-- Ground -->
+              <rect x="0" y="165" width="380" height="35" fill="#0a1f44"/>
+              <!-- Main building body -->
+              <rect x="60" y="75" width="260" height="90" fill="#1a3a6b"/>
+              <!-- Roof -->
+              <polygon points="50,75 190,30 330,75" fill="#1152a3"/>
+              <!-- Flag pole -->
+              <rect x="188" y="10" width="4" height="40" fill="#f9a825"/>
+              <!-- Flag -->
+              <rect x="192" y="10" width="22" height="14" fill="#e74c3c"/>
+              <rect x="192" y="10" width="22" height="5" fill="#ffffff"/>
+              <!-- Windows row 1 -->
+              <rect x="80" y="92" width="28" height="20" rx="3" fill="#2e86de" opacity="0.8"/>
+              <rect x="118" y="92" width="28" height="20" rx="3" fill="#2e86de" opacity="0.8"/>
+              <rect x="167" y="92" width="28" height="20" rx="3" fill="#ffd54f" opacity="0.9"/>
+              <rect x="206" y="92" width="28" height="20" rx="3" fill="#2e86de" opacity="0.8"/>
+              <rect x="245" y="92" width="28" height="20" rx="3" fill="#2e86de" opacity="0.8"/>
+              <rect x="284" y="92" width="28" height="20" rx="3" fill="#ffd54f" opacity="0.9"/>
+              <!-- Main door -->
+              <rect x="163" y="130" width="54" height="35" rx="6" fill="#0a1f44"/>
+              <rect x="163" y="130" width="26" height="35" rx="4" fill="#0d2748" stroke="#2e86de" stroke-width="1"/>
+              <rect x="190" y="130" width="27" height="35" rx="4" fill="#0d2748" stroke="#2e86de" stroke-width="1"/>
+              <!-- Steps -->
+              <rect x="155" y="162" width="70" height="5" rx="2" fill="#2e86de" opacity="0.4"/>
+              <!-- School sign -->
+              <rect x="145" y="108" width="90" height="18" rx="4" fill="#f9a825"/>
+              <text x="190" y="120" text-anchor="middle" font-size="8" fill="#0a1f44" font-weight="bold" font-family="sans-serif">GHS BALEWAL</text>
+              <!-- Trees -->
+              <ellipse cx="38" cy="150" rx="22" ry="28" fill="#1e5631"/>
+              <rect x="35" y="163" width="6" height="12" fill="#4a3728"/>
+              <ellipse cx="342" cy="150" rx="22" ry="28" fill="#1e5631"/>
+              <rect x="339" y="163" width="6" height="12" fill="#4a3728"/>
+              <!-- Path -->
+              <polygon points="170,165 210,165 220,200 160,200" fill="#1a3a6b" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="num">500+</div>
+              <div class="lbl">Students Enrolled</div>
+            </div>
+            <div class="stat-box">
+              <div class="num">25+</div>
+              <div class="lbl">Qualified Teachers</div>
+            </div>
+            <div class="stat-box">
+              <div class="num">10+</div>
+              <div class="lbl">Classes Offered</div>
+            </div>
+            <div class="stat-box">
+              <div class="num">95%</div>
+              <div class="lbl">Pass Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK STATS -->
+<div class="quick-stats">
+  <div class="container">
+    <div class="qstat"><div class="n">1990</div><div class="l">Year Established</div></div>
+    <div class="qstat"><div class="n">500+</div><div class="l">Total Students</div></div>
+    <div class="qstat"><div class="n">25+</div><div class="l">Teaching Staff</div></div>
+    <div class="qstat"><div class="n">95%</div><div class="l">Board Pass Rate</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">
+        <div class="about-img-main">
+          <svg viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <defs>
+              <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#0d2748"/>
+                <stop offset="100%" style="stop-color:#1152a3"/>
+              </linearGradient>
+            </defs>
+            <rect width="420" height="340" fill="url(#bg)"/>
+            <!-- Circle decorations -->
+            <circle cx="380" cy="40" r="60" fill="rgba(255,255,255,0.04)"/>
+            <circle cx="40" cy="300" r="80" fill="rgba(255,255,255,0.03)"/>
+            <!-- Book stack -->
+            <rect x="90" y="200" width="100" height="18" rx="4" fill="#2e86de" opacity="0.9"/>
+            <rect x="85" y="184" width="110" height="18" rx="4" fill="#1152a3"/>
+            <rect x="95" y="168" width="90" height="18" rx="4" fill="#f9a825" opacity="0.85"/>
+            <rect x="80" y="152" width="120" height="18" rx="4" fill="#27ae60" opacity="0.85"/>
+            <!-- Diploma/scroll -->
+            <rect x="240" y="155" width="100" height="75" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+            <rect x="250" y="168" width="80" height="3" rx="2" fill="rgba(255,255,255,0.4)"/>
+            <rect x="250" y="177" width="60" height="3" rx="2" fill="rgba(255,255,255,0.3)"/>
+            <rect x="250" y="186" width="70" height="3" rx="2" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="290" cy="208" r="12" fill="#f9a825" opacity="0.8"/>
+            <!-- Mortarboard -->
+            <ellipse cx="200" cy="115" rx="55" ry="12" fill="#0a1f44"/>
+            <rect x="168" y="68" width="64" height="50" rx="5" fill="#1a3a6b"/>
+            <polygon points="145,115 200,88 255,115" fill="#2e86de"/>
+            <rect x="240" y="115" width="3" height="28" fill="#f9a825"/>
+            <circle cx="241" cy="143" r="5" fill="#f9a825"/>
+            <!-- Stars -->
+            <text x="120" y="145" font-size="18" fill="#f9a825" opacity="0.7">★</text>
+            <text x="290" y="145" font-size="14" fill="#f9a825" opacity="0.5">★</text>
+            <text x="310" y="250" font-size="18" fill="#2e86de" opacity="0.5">★</text>
+            <!-- GHS Text -->
+            <text x="210" y="298" text-anchor="middle" font-size="13" fill="rgba(255,255,255,0.5)" font-family="sans-serif" letter-spacing="3">KNOWLEDGE · INTEGRITY · EXCELLENCE</text>
+          </svg>
+          <div class="about-badge" style="position:absolute;bottom:-18px;right:-18px;">
+            <span class="years">30+</span>
+            <span class="ytext">Years of Excellence</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-tag">About Us</div>
+        <h2>A Legacy of Quality <span style="color:var(--sky)">Education</span></h2>
+        <div class="about-loc"><i class="fa fa-map-marker-alt"></i> Block Takhtgarh, Rupnagar, Punjab, India</div>
+        <p>Government High School Balewal (GHS Balewal) is a distinguished government-run institution serving the educational needs of students in Block Takhtgarh and surrounding villages of District Rupnagar, Punjab.</p>
+        <p>Founded with a commitment to providing accessible, high-quality education, GHS Balewal has consistently produced students who excel in academics, sports, and community service. The school operates under the Punjab Government's Department of School Education.</p>
+        <div class="mv-cards">
+          <div class="mv-card">
+            <h4><i class="fa fa-bullseye"></i> Our Mission</h4>
+            <p>To provide inclusive, quality education that empowers every child with knowledge, values, and life skills for a brighter future.</p>
+          </div>
+          <div class="mv-card">
+            <h4><i class="fa fa-eye"></i> Our Vision</h4>
+            <p>To be a centre of academic excellence where students from all backgrounds thrive and become responsible, capable citizens of India.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENT & TEACHER PORTALS -->
+<section class="section section-alt" id="portals">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Digital Portals</div>
+      <h2 class="section-title">Student & <span>Teacher</span> Dashboards</h2>
+      <p class="section-desc">Access your personalized dashboard to manage academics, attendance, results, and more — all in one place.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="portals-grid">
+      <!-- Student Portal -->
+      <div class="portal-card">
+        <div class="portal-header student">
+          <i class="fa fa-user-graduate portal-icon"></i>
+          <h3>Student Portal</h3>
+          <p>Access your academic information and resources</p>
+        </div>
+        <div class="portal-body">
+          <ul class="portal-menu">
+            <li onclick="openStudentDash('profile')"><i class="fa fa-id-card"></i> View My Profile</li>
+            <li onclick="openStudentDash('attendance')"><i class="fa fa-calendar-check"></i> Check Attendance</li>
+            <li onclick="openStudentDash('results')"><i class="fa fa-chart-bar"></i> View Results / Marks</li>
+            <li onclick="openStudentDash('homework')"><i class="fa fa-book-open"></i> Homework & Assignments</li>
+            <li onclick="openStudentDash('profile')"><i class="fa fa-user-edit"></i> Update Personal Details</li>
+          </ul>
+        </div>
+        <div class="portal-footer">
+          <button class="btn-portal student" onclick="openLogin('student')"><i class="fa fa-sign-in-alt"></i> Student Login</button>
+        </div>
+      </div>
+      <!-- Teacher Portal -->
+      <div class="portal-card">
+        <div class="portal-header teacher">
+          <i class="fa fa-chalkboard-teacher portal-icon"></i>
+          <h3>Teacher Dashboard</h3>
+          <p>Manage records, marks, attendance & materials</p>
+        </div>
+        <div class="portal-body">
+          <ul class="portal-menu">
+            <li onclick="openTeacherDash('records')"><i class="fa fa-users-cog"></i> Add / Edit Student Records</li>
+            <li onclick="openTeacherDash('marks')"><i class="fa fa-upload"></i> Upload Marks / Results</li>
+            <li onclick="openTeacherDash('attendance')"><i class="fa fa-clipboard-list"></i> Mark Attendance</li>
+            <li onclick="openTeacherDash('materials')"><i class="fa fa-folder-open"></i> Upload Study Materials</li>
+            <li onclick="openTeacherDash('announce')"><i class="fa fa-bullhorn"></i> Post Announcements</li>
+          </ul>
+        </div>
+        <div class="portal-footer">
+          <button class="btn-portal teacher" onclick="openLogin('teacher')"><i class="fa fa-sign-in-alt"></i> Teacher Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICE BOARD -->
+<section class="section" id="notices">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Announcements</div>
+      <h2 class="section-title">Notice <span>Board</span></h2>
+      <p class="section-desc">Stay updated with the latest school announcements, events, and important information.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="notices-grid">
+      <div class="notice-card urgent">
+        <div class="notice-meta">
+          <span class="notice-badge nb-urgent">Urgent</span>
+          <span class="notice-date"><i class="fa fa-calendar"></i> 25 Mar 2025</span>
+        </div>
+        <h4>Annual Examination Schedule 2025 Released</h4>
+        <p>The timetable for the Annual Board Examinations 2025 has been released. All students of Classes 9 & 10 are advised to collect their admit cards from the office.</p>
+      </div>
+      <div class="notice-card event">
+        <div class="notice-meta">
+          <span class="notice-badge nb-event">Event</span>
+          <span class="notice-date"><i class="fa fa-calendar"></i> 20 Mar 2025</span>
+        </div>
+        <h4>Annual Sports Day – 5th April 2025</h4>
+        <p>GHS Balewal is proud to host its Annual Sports Day. Students are encouraged to register for track events, kabaddi, and other competitions. Practice begins 28th March.</p>
+      </div>
+      <div class="notice-card">
+        <div class="notice-meta">
+          <span class="notice-badge nb-info">Notice</span>
+          <span class="notice-date"><i class="fa fa-calendar"></i> 15 Mar 2025</span>
+        </div>
+        <h4>New Admission Session 2025–26 Open</h4>
+        <p>Admissions for the academic session 2025–26 are now open for Classes 6 to 10. Visit the school office or fill in the online form on this website.</p>
+      </div>
+      <div class="notice-card">
+        <div class="notice-meta">
+          <span class="notice-badge nb-info">Notice</span>
+          <span class="notice-date"><i class="fa fa-calendar"></i> 10 Mar 2025</span>
+        </div>
+        <h4>Parent-Teacher Meeting – 30 March 2025</h4>
+        <p>All parents are invited to attend the Parent-Teacher Meeting scheduled for 30th March 2025 at 10:00 AM in the school premises. Attendance is mandatory.</p>
+      </div>
+      <div class="notice-card event">
+        <div class="notice-meta">
+          <span class="notice-badge nb-event">Event</span>
+          <span class="notice-date"><i class="fa fa-calendar"></i> 5 Mar 2025</span>
+        </div>
+        <h4>Science & Culture Fair – April 2025</h4>
+        <p>Students are invited to participate in the Inter-School Science & Culture Fair. Project submissions to be made to class teachers by 31st March.</p>
+      </div>
+      <div class="notice-card">
+        <div class="notice-meta">
+          <span class="notice-badge nb-info">Notice</span>
+          <span class="notice-date"><i class="fa fa-calendar"></i> 1 Mar 2025</span>
+        </div>
+        <h4>Mid-Term Result Cards Distributed</h4>
+        <p>Mid-term examination result cards for all classes have been distributed. Parents who haven't collected them may do so from the school office before 10 April.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section section-alt" id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Gallery</div>
+      <h2 class="section-title">School <span>Activities & Events</span></h2>
+      <p class="section-desc">A glimpse into our vibrant school life — from classrooms and playgrounds to cultural events and celebrations.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-img gi1">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <rect width="400" height="300" fill="#1a3a6b"/>
+            <rect x="30" y="50" width="340" height="200" rx="8" fill="rgba(255,255,255,0.07)"/>
+            <text x="200" y="140" text-anchor="middle" font-size="50" fill="rgba(255,255,255,0.15)">🏫</text>
+            <text x="200" y="200" text-anchor="middle" font-size="14" fill="rgba(255,255,255,0.5)" font-family="sans-serif">School Campus</text>
+          </svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-label"><i class="fa fa-camera"></i> School Campus</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img gi2">
+          <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <rect width="200" height="160" fill="#0d5c3a"/>
+            <text x="100" y="80" text-anchor="middle" font-size="40" fill="rgba(255,255,255,0.15)">⚽</text>
+            <text x="100" y="130" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.5)" font-family="sans-serif">Sports Day</text>
+          </svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-label"><i class="fa fa-trophy"></i> Sports Day</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img gi3">
+          <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <rect width="200" height="160" fill="#6a0dad"/>
+            <text x="100" y="80" text-anchor="middle" font-size="40" fill="rgba(255,255,255,0.15)">🎭</text>
+            <text x="100" y="130" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.5)" font-family="sans-serif">Cultural Event</text>
+          </svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-label"><i class="fa fa-theater-masks"></i> Cultural Event</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img gi4">
+          <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <rect width="200" height="160" fill="#c0392b"/>
+            <text x="100" y="80" text-anchor="middle" font-size="40" fill="rgba(255,255,255,0.15)">🔬</text>
+            <text x="100" y="130" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.5)" font-family="sans-serif">Science Fair</text>
+          </svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-label"><i class="fa fa-flask"></i> Science Fair</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img gi5">
+          <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <rect width="200" height="160" fill="#e67e22"/>
+            <text x="100" y="80" text-anchor="middle" font-size="40" fill="rgba(255,255,255,0.15)">🎓</text>
+            <text x="100" y="130" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.5)" font-family="sans-serif">Graduation Day</text>
+          </svg>
+        </div>
+        <div class="gallery-overlay"><span class="gallery-label"><i class="fa fa-graduation-cap"></i> Graduation Day</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSION FORM -->
+<section class="section" id="admission">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Enroll Now</div>
+      <h2 class="section-title">Admission <span>Application Form</span></h2>
+      <p class="section-desc">Fill out the form below to apply for admission to GHS Balewal for the academic session 2025–26.</p>
+      <div class="divider"></div>
+    </div>
+    <div style="background:var(--white);border-radius:24px;box-shadow:var(--shadow);padding:44px 40px;max-width:820px;margin:0 auto;">
+      <div style="background:linear-gradient(135deg,var(--blue),var(--sky));border-radius:14px;padding:22px 28px;color:var(--white);margin-bottom:32px;display:flex;align-items:center;gap:18px;">
+        <i class="fa fa-info-circle" style="font-size:1.8rem;opacity:0.8;"></i>
+        <div>
+          <strong style="font-size:0.95rem;">Session 2025–26 Admissions Open</strong>
+          <p style="font-size:0.83rem;opacity:0.8;margin-top:3px;">For Classes 6 to 10 · Documents required: Birth Certificate, Aadhaar, Previous Marksheet</p>
+        </div>
+      </div>
+      <form id="admissionForm" onsubmit="submitForm(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label><i class="fa fa-user"></i> Student Full Name *</label>
+            <input type="text" placeholder="Enter student's full name" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-birthday-cake"></i> Date of Birth *</label>
+            <input type="date" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-user-friends"></i> Father's Name *</label>
+            <input type="text" placeholder="Father's full name" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-user-friends"></i> Mother's Name *</label>
+            <input type="text" placeholder="Mother's full name" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-venus-mars"></i> Gender *</label>
+            <select required>
+              <option value="">Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-layer-group"></i> Class Applying For *</label>
+            <select required>
+              <option value="">Select Class</option>
+              <option>Class 6</option>
+              <option>Class 7</option>
+              <option>Class 8</option>
+              <option>Class 9</option>
+              <option>Class 10</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-phone"></i> Contact Number *</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-envelope"></i> Email ID</label>
+            <input type="email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-id-card"></i> Aadhaar Number</label>
+            <input type="text" placeholder="XXXX XXXX XXXX">
+          </div>
+          <div class="form-group">
+            <label><i class="fa fa-graduation-cap"></i> Previous School (if any)</label>
+            <input type="text" placeholder="Previous school name">
+          </div>
+          <div class="form-group full">
+            <label><i class="fa fa-map-marker-alt"></i> Full Address *</label>
+            <input type="text" placeholder="Village, Block Takhtgarh, District Rupnagar, Punjab" required>
+          </div>
+          <div class="form-group full">
+            <label><i class="fa fa-paperclip"></i> Upload Documents</label>
+            <div class="upload-area" onclick="this.querySelector('input').click()">
+              <i class="fa fa-cloud-upload-alt"></i>
+              <p><strong>Click to Upload</strong> or drag & drop files here</p>
+              <p style="font-size:0.75rem;margin-top:5px;">Birth Certificate, Aadhaar, Previous Marksheet (PDF/JPG, Max 5MB each)</p>
+              <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="updateUploadLabel(this)">
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:16px;background:var(--offwhite);border-radius:12px;font-size:0.82rem;color:var(--gray);">
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+            <input type="checkbox" required style="margin-top:3px;">
+            <span>I hereby certify that all information provided above is true and correct. I agree to abide by all rules and regulations of Government High School Balewal.</span>
+          </label>
+        </div>
+        <div class="form-submit" style="margin-top:28px;">
+          <button type="submit" class="btn-submit"><i class="fa fa-paper-plane"></i> Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Contact <span>Us</span></h2>
+      <p class="section-desc">We're here to help. Reach out to us through any of the channels below.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fa fa-map-marker-alt"></i></div>
+          <div class="contact-info">
+            <h4>School Address</h4>
+            <p>Government High School Balewal<br>Village Balewal, Block Takhtgarh<br>District Rupnagar (Ropar), Punjab – 140001</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fa fa-phone-alt"></i></div>
+          <div class="contact-info">
+            <h4>Phone Number</h4>
+            <p>Office: <a href="tel:+911881000000">+91-01881-XXXXXX</a><br>Principal's Office: Available on school days</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+          <div class="contact-info">
+            <h4>Email Address</h4>
+            <p><a href="mailto:ghsbalewal@punjab.gov.in">ghsbalewal@punjab.gov.in</a><br>For admissions: <a href="mailto:admission.ghsbalewal@punjab.gov.in">admission.ghsbalewal@punjab.gov.in</a></p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fa fa-clock"></i></div>
+          <div class="contact-info">
+            <h4>School Timings</h4>
+            <p>Monday – Saturday: 8:00 AM – 2:00 PM<br>Office: 8:00 AM – 4:00 PM<br>Sunday & Public Holidays: Closed</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map-placeholder">
+          <div class="map-pin"><i class="fa fa-map-pin"></i></div>
+          <i class="fa fa-map-marked-alt" style="font-size:3rem;opacity:0.25;"></i>
+          <p style="font-size:0.92rem;color:var(--blue);font-weight:700;">GHS Balewal</p>
+          <p>Block Takhtgarh, District Rupnagar<br>Punjab, India</p>
+          <a href="https://maps.google.com/?q=Balewal,Takhtgarh,Rupnagar,Punjab" target="_blank" class="btn" style="background:var(--blue);color:var(--white);margin-top:10px;font-size:0.85rem;padding:11px 22px;">
+            <i class="fa fa-external-link-alt"></i> Open in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" style="margin-bottom:16px;">
+          <div class="logo-icon"><i class="fa fa-graduation-cap"></i></div>
+          <div class="logo-text">
+            <div class="school-name" style="color:var(--white);">GHS Balewal</div>
+            <div class="school-sub" style="color:rgba(255,255,255,0.5);">Est. Punjab, India</div>
+          </div>
+        </a>
+        <p>Government High School Balewal — committed to shaping the next generation of leaders through knowledge, integrity, and excellence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home"><i class="fa fa-chevron-right"></i> Home</a></li>
+          <li><a href="#about"><i class="fa fa-chevron-right"></i> About Us</a></li>
+          <li><a href="#portals"><i class="fa fa-chevron-right"></i> Student Portal</a></li>
+          <li><a href="#portals"><i class="fa fa-chevron-right"></i> Teacher Portal</a></li>
+          <li><a href="#admission"><i class="fa fa-chevron-right"></i> Admissions</a></li>
+          <li><a href="#contact"><i class="fa fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#notices"><i class="fa fa-chevron-right"></i> Notice Board</a></li>
+          <li><a href="#gallery"><i class="fa fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="#"><i class="fa fa-chevron-right"></i> Time Table</a></li>
+          <li><a href="#"><i class="fa fa-chevron-right"></i> Academic Calendar</a></li>
+          <li><a href="#"><i class="fa fa-chevron-right"></i> Results</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h4>Stay Connected</h4>
+        <p>Subscribe for school updates and announcements delivered directly.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address">
+          <button type="button" onclick="showToast('Subscribed successfully!')"><i class="fa fa-paper-plane"></i></button>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:10px;">
+          <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:grid;place-items:center;color:var(--white);font-size:0.9rem;transition:background 0.2s;text-decoration:none;" onmouseover="this.style.background='#1877f2'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:grid;place-items:center;color:var(--white);font-size:0.9rem;transition:background 0.2s;text-decoration:none;" onmouseover="this.style.background='#25d366'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:grid;place-items:center;color:var(--white);font-size:0.9rem;transition:background 0.2s;text-decoration:none;" onmouseover="this.style.background='#e1306c'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><i class="fab fa-instagram"></i></a>
+          <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:grid;place-items:center;color:var(--white);font-size:0.9rem;transition:background 0.2s;text-decoration:none;" onmouseover="this.style.background='#ff0000'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Government High School Balewal, Block Takhtgarh, District Rupnagar, Punjab, India · Under Punjab Govt. Dept. of School Education · Designed with ❤️</p>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<a class="back-top" id="backTop" href="#home"><i class="fa fa-arrow-up"></i></a>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa fa-check-circle"></i> <span id="toastMsg"></span></div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal" style="max-width:460px;">
+    <div class="modal-head">
+      <h2>Portal Login</h2>
+      <button class="modal-close" onclick="closeModal('loginModal')"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="login-logo">
+        <div class="logo-icon" style="width:64px;height:64px;border-radius:16px;font-size:1.8rem;margin:0 auto 12px;background:linear-gradient(135deg,var(--blue),var(--sky));display:grid;place-items:center;color:var(--white);"><i class="fa fa-graduation-cap"></i></div>
+        <h3>GHS Balewal</h3>
+        <p>Government High School Balewal</p>
+      </div>
+      <div class="login-tabs">
+        <div class="login-tab active" onclick="switchTab('student')">🎓 Student</div>
+        <div class="login-tab" onclick="switchTab('teacher')">👩‍🏫 Teacher</div>
+        <div class="login-tab" onclick="switchTab('admin')">🔐 Admin</div>
+      </div>
+      <div class="login-form active" id="tab-student">
+        <div class="form-group" style="margin-bottom:16px;">
+          <label><i class="fa fa-id-badge"></i> Student Roll Number</label>
+          <input type="text" placeholder="e.g. GHS2025001">
+        </div>
+        <div class="form-group" style="margin-bottom:20px;">
+          <label><i class="fa fa-lock"></i> Password / Date of Birth</label>
+          <input type="password" placeholder="Enter password">
+        </div>
+        <button class="btn-portal student" onclick="loginSuccess('Student')" style="width:100%;border-radius:12px;"><i class="fa fa-sign-in-alt"></i> Login as Student</button>
+      </div>
+      <div class="login-form" id="tab-teacher">
+        <div class="form-group" style="margin-bottom:16px;">
+          <label><i class="fa fa-user-tie"></i> Employee ID</label>
+          <input type="text" placeholder="e.g. TEACH001">
+        </div>
+        <div class="form-group" style="margin-bottom:20px;">
+          <label><i class="fa fa-lock"></i> Password</label>
+          <input type="password" placeholder="Enter password">
+        </div>
+        <button class="btn-portal teacher" onclick="loginSuccess('Teacher')" style="width:100%;border-radius:12px;"><i class="fa fa-sign-in-alt"></i> Login as Teacher</button>
+      </div>
+      <div class="login-form" id="tab-admin">
+        <div class="form-group" style="margin-bottom:16px;">
+          <label><i class="fa fa-user-shield"></i> Admin ID</label>
+          <input type="text" placeholder="admin@ghsbalewal">
+        </div>
+        <div class="form-group" style="margin-bottom:20px;">
+          <label><i class="fa fa-lock"></i> Admin Password</label>
+          <input type="password" placeholder="Enter admin password">
+        </div>
+        <button class="btn-portal" style="background:linear-gradient(135deg,#6a0dad,#9b59b6);color:white;width:100%;border-radius:12px;" onclick="loginSuccess('Admin')"><i class="fa fa-sign-in-alt"></i> Login as Admin</button>
+      </div>
+      <p style="text-align:center;margin-top:18px;font-size:0.82rem;color:var(--gray);">Forgot password? <a href="#" style="color:var(--blue);">Contact school office</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- STUDENT DASHBOARD MODAL -->
+<div class="modal-overlay" id="studentModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="studentModalTitle">Student Dashboard</h2>
+      <button class="modal-close" onclick="closeModal('studentModal')"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="studentModalBody"></div>
+  </div>
+</div>
+
+<!-- TEACHER DASHBOARD MODAL -->
+<div class="modal-overlay" id="teacherModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="teacherModalTitle">Teacher Dashboard</h2>
+      <button class="modal-close" onclick="closeModal('teacherModal')"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="teacherModalBody"></div>
+  </div>
+</div>
+
+<script>
+// ---- NAVBAR SCROLL ----
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  const back = document.getElementById('backTop');
+  if (window.scrollY > 60) { nav.classList.add('scrolled'); back.classList.add('visible'); }
+  else { nav.classList.remove('scrolled'); back.classList.remove('visible'); }
+  // Active nav link
+  const sections = ['home','about','portals','notices','gallery','admission','contact'];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    const links = document.querySelectorAll('.nav-links a');
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= 120 && rect.bottom >= 120) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (a) a.classList.add('active');
+      }
+    }
+  });
+});
+
+// ---- MOBILE MENU ----
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ---- MODAL HELPERS ----
+function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
+document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if(e.target===m) closeModal(m.id); }));
+
+// ---- LOGIN ----
+function openLogin(type) {
+  openModal('loginModal');
+  if (type) switchTab(type);
+}
+function switchTab(tab) {
+  document.querySelectorAll('.login-tab').forEach((t,i)=>{
+    const tabs=['student','teacher','admin'];
+    t.classList.toggle('active', tabs[i]===tab);
+  });
+  document.querySelectorAll('.login-form').forEach(f => f.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+function loginSuccess(role) {
+  closeModal('loginModal');
+  showToast(`Welcome! ${role} login successful (demo mode).`);
+}
+
+// ---- TOAST ----
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ---- UPLOAD LABEL ----
+function updateUploadLabel(input) {
+  const area = input.closest('.upload-area');
+  if (input.files.length > 0) {
+    area.querySelector('p').innerHTML = `<strong>${input.files.length} file(s) selected</strong>`;
+    area.style.borderColor = 'var(--success)';
+    area.style.background = '#f0fdf4';
+  }
+}
+
+// ---- ADMISSION FORM ----
+function submitForm(e) {
+  e.preventDefault();
+  showToast('Application submitted successfully! We will contact you soon.');
+  e.target.reset();
+}
+
+// ---- STUDENT DASHBOARD ----
+const studentContent = {
+  profile: {
+    title: 'Student Profile',
+    html: `<div class="dash-grid">
+      <div class="dash-card"><h4>Student Name</h4><div class="val" style="font-size:1.1rem">Gurpreet Singh</div></div>
+      <div class="dash-card"><h4>Roll Number</h4><div class="val" style="font-size:1.1rem">GHS2025042</div></div>
+      <div class="dash-card"><h4>Class</h4><div class="val" style="font-size:1.1rem">Class 10 – A</div></div>
+      <div class="dash-card green"><h4>Status</h4><div class="val" style="font-size:1.1rem">Active</div></div>
+    </div>
+    <table class="subject-table" style="margin-top:8px"><tr><th>Field</th><th>Details</th></tr>
+    <tr><td>Father's Name</td><td>Harjinder Singh</td></tr>
+    <tr><td>Date of Birth</td><td>12 August 2009</td></tr>
+    <tr><td>Address</td><td>Village Balewal, Block Takhtgarh</td></tr>
+    <tr><td>Contact</td><td>+91-98XXX-XXXXX</td></tr>
+    <tr><td>Aadhaar</td><td>XXXX-XXXX-7890</td></tr>
+    </table>
+    <div style="text-align:center;margin-top:20px"><button class="btn-submit" style="padding:12px 32px;font-size:0.88rem">✏️ Edit Profile</button></div>`
+  },
+  attendance: {
+    title: 'Attendance Record',
+    html: `<div class="dash-grid">
+      <div class="dash-card green"><h4>Present Days</h4><div class="val">142</div></div>
+      <div class="dash-card red"><h4>Absent Days</h4><div class="val">8</div></div>
+      <div class="dash-card"><h4>Total Working Days</h4><div class="val">150</div></div>
+      <div class="dash-card amber"><h4>Attendance %</h4><div class="val">94.7%</div></div>
+    </div>
+    <div style="margin-top:16px;background:var(--offwhite);border-radius:14px;padding:18px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:0.85rem;font-weight:600;color:var(--navy)">
+        <span>Overall Attendance</span><span style="color:var(--success)">94.7%</span>
+      </div>
+      <div class="att-bar"><div class="att-fill" style="width:94.7%"></div></div>
+      <p style="font-size:0.78rem;color:var(--gray);margin-top:6px">Minimum required: 75% · Your attendance is <strong style="color:var(--success)">Excellent</strong></p>
+    </div>
+    <table class="subject-table" style="margin-top:16px"><tr><th>Month</th><th>Present</th><th>Absent</th><th>%</th></tr>
+    <tr><td>January</td><td>22</td><td>0</td><td><span class="badge-grade grade-a">100%</span></td></tr>
+    <tr><td>February</td><td>19</td><td>2</td><td><span class="badge-grade grade-a">90%</span></td></tr>
+    <tr><td>March</td><td>21</td><td>3</td><td><span class="badge-grade grade-b">87%</span></td></tr>
+    <tr><td>April</td><td>24</td><td>0</td><td><span class="badge-grade grade-a">100%</span></td></tr>
+    <tr><td>May</td><td>20</td><td>2</td><td><span class="badge-grade grade-b">91%</span></td></tr>
+    </table>`
+  },
+  results: {
+    title: 'Examination Results',
+    html: `<div class="dash-grid">
+      <div class="dash-card green"><h4>Total Marks</h4><div class="val">468/500</div></div>
+      <div class="dash-card"><h4>Percentage</h4><div class="val">93.6%</div></div>
+      <div class="dash-card amber"><h4>Grade</h4><div class="val">A+</div></div>
+      <div class="dash-card"><h4>Class Rank</h4><div class="val">#3</div></div>
+    </div>
+    <table class="subject-table" style="margin-top:16px"><tr><th>Subject</th><th>Max Marks</th><th>Obtained</th><th>Grade</th></tr>
+    <tr><td>Punjabi</td><td>100</td><td>92</td><td><span class="badge-grade grade-a">A+</span></td></tr>
+    <tr><td>English</td><td>100</td><td>88</td><td><span class="badge-grade grade-a">A</span></td></tr>
+    <tr><td>Mathematics</td><td>100</td><td>95</td><td><span class="badge-grade grade-a">A+</span></td></tr>
+    <tr><td>Science</td><td>100</td><td>91</td><td><span class="badge-grade grade-a">A+</span></td></tr>
+    <tr><td>Social Science</td><td>100</td><td>87</td><td><span class="badge-grade grade-b">B+</span></td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>500</strong></td><td><strong>453</strong></td><td><span class="badge-grade grade-a">A+</span></td></tr>
+    </table>`
+  },
+  homework: {
+    title: 'Homework & Assignments',
+    html: `<div class="hw-item"><div class="hw-info"><h4>Mathematics – Chapter 7: Polynomials</h4><p>Complete Exercise 7.3 (Q1–Q10) and revise theorem proof</p></div><span class="hw-due">Due: 28 Mar</span></div>
+    <div class="hw-item"><div class="hw-info"><h4>English – Essay Writing</h4><p>Write a 500-word essay on "The Importance of Education in Rural India"</p></div><span class="hw-due">Due: 30 Mar</span></div>
+    <div class="hw-item" style="border-color:var(--success)"><div class="hw-info"><h4>Science – Lab Report ✓</h4><p>Submit lab report on the experiment of Acid-Base reactions</p></div><span class="hw-due" style="background:var(--success);color:white">Submitted</span></div>
+    <div class="hw-item" style="border-color:var(--accent)"><div class="hw-info"><h4>Punjabi – Poem Recitation</h4><p>Memorise and recite the poem "Punjabi Di Mahima" with expressions</p></div><span class="hw-due">Due: 1 Apr</span></div>
+    <div class="hw-item"><div class="hw-info"><h4>Social Science – Map Work</h4><p>Mark major rivers, states, and capitals on outline map of India</p></div><span class="hw-due">Due: 2 Apr</span></div>`
+  }
+};
+
+function openStudentDash(section) {
+  const content = studentContent[section] || studentContent['profile'];
+  document.getElementById('studentModalTitle').textContent = content.title;
+  document.getElementById('studentModalBody').innerHTML = content.html;
+  openModal('studentModal');
+}
+
+// ---- TEACHER DASHBOARD ----
+const teacherContent = {
+  records: {
+    title: 'Student Records Management',
+    html: `<div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+      <button class="btn-portal student" style="border-radius:10px;padding:10px 18px;font-size:0.85rem;flex:1"><i class="fa fa-plus"></i> Add Student</button>
+      <button class="btn-portal teacher" style="border-radius:10px;padding:10px 18px;font-size:0.85rem;flex:1"><i class="fa fa-download"></i> Export List</button>
+    </div>
+    <table class="subject-table"><tr><th>Roll No</th><th>Name</th><th>Class</th><th>Status</th><th>Action</th></tr>
+    <tr><td>001</td><td>Gurpreet Singh</td><td>10-A</td><td><span class="badge-grade grade-a">Active</span></td><td><a href="#" style="color:var(--blue)">Edit</a></td></tr>
+    <tr><td>002</td><td>Simran Kaur</td><td>10-A</td><td><span class="badge-grade grade-a">Active</span></td><td><a href="#" style="color:var(--blue)">Edit</a></td></tr>
+    <tr><td>003</td><td>Harpreet Sharma</td><td>9-B</td><td><span class="badge-grade grade-a">Active</span></td><td><a href="#" style="color:var(--blue)">Edit</a></td></tr>
+    <tr><td>004</td><td>Mandeep Rai</td><td>9-A</td><td><span class="badge-grade grade-c">Inactive</span></td><td><a href="#" style="color:var(--blue)">Edit</a></td></tr>
+    <tr><td>005</td><td>Prabhjot Sandhu</td><td>8-B</td><td><span class="badge-grade grade-a">Active</span></td><td><a href="#" style="color:var(--blue)">Edit</a></td></tr>
+    </table>`
+  },
+  marks: {
+    title: 'Upload Marks / Results',
+    html: `<div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-layer-group"></i> Select Class</label><select><option>Class 10-A</option><option>Class 10-B</option><option>Class 9-A</option><option>Class 9-B</option></select></div>
+    <div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-book"></i> Select Subject</label><select><option>Mathematics</option><option>Science</option><option>English</option><option>Punjabi</option></select></div>
+    <div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-file-alt"></i> Examination Type</label><select><option>Mid-Term</option><option>Annual Exam</option><option>Unit Test</option></select></div>
+    <div class="upload-area" style="margin-bottom:20px">
+      <i class="fa fa-file-excel" style="color:var(--success)"></i>
+      <p><strong>Upload Marks Sheet</strong> (.xlsx or .csv)</p>
+      <p style="font-size:0.78rem;margin-top:5px">Download template first, fill marks, then upload</p>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn-portal student" style="border-radius:10px;flex:1"><i class="fa fa-download"></i> Download Template</button>
+      <button class="btn-portal teacher" style="border-radius:10px;flex:1" onclick="showToast('Marks uploaded successfully!');closeModal('teacherModal')"><i class="fa fa-upload"></i> Submit Marks</button>
+    </div>`
+  },
+  attendance: {
+    title: 'Mark Attendance',
+    html: `<div style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;align-items:center">
+      <div class="form-group" style="flex:1;min-width:140px;margin:0"><label>Class</label><select><option>Class 10-A</option><option>Class 9-B</option></select></div>
+      <div class="form-group" style="flex:1;min-width:140px;margin:0"><label>Date</label><input type="date" value="2025-03-25"></div>
+    </div>
+    <table class="subject-table"><tr><th>Roll</th><th>Student Name</th><th>Present</th><th>Absent</th><th>Late</th></tr>
+    <tr><td>001</td><td>Gurpreet Singh</td><td><input type="radio" name="a1" checked></td><td><input type="radio" name="a1"></td><td><input type="radio" name="a1"></td></tr>
+    <tr><td>002</td><td>Simran Kaur</td><td><input type="radio" name="a2" checked></td><td><input type="radio" name="a2"></td><td><input type="radio" name="a2"></td></tr>
+    <tr><td>003</td><td>Harpreet Sharma</td><td><input type="radio" name="a3"></td><td><input type="radio" name="a3" checked></td><td><input type="radio" name="a3"></td></tr>
+    <tr><td>004</td><td>Mandeep Rai</td><td><input type="radio" name="a4" checked></td><td><input type="radio" name="a4"></td><td><input type="radio" name="a4"></td></tr>
+    </table>
+    <div style="text-align:center;margin-top:20px"><button class="btn-submit" style="padding:12px 32px;font-size:0.88rem" onclick="showToast('Attendance saved!');closeModal('teacherModal')"><i class="fa fa-save"></i> Save Attendance</button></div>`
+  },
+  materials: {
+    title: 'Upload Study Materials',
+    html: `<div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-layer-group"></i> Class</label><select><option>Class 10</option><option>Class 9</option><option>Class 8</option></select></div>
+    <div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-book"></i> Subject</label><select><option>Mathematics</option><option>Science</option><option>English</option><option>Punjabi</option></select></div>
+    <div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-heading"></i> Title</label><input type="text" placeholder="e.g. Chapter 5 Notes – Arithmetic Progressions"></div>
+    <div class="upload-area" style="margin-bottom:18px">
+      <i class="fa fa-file-pdf" style="color:#e74c3c"></i>
+      <p><strong>Upload Material</strong> (PDF, DOC, PPT)</p>
+    </div>
+    <button class="btn-portal student" style="width:100%;border-radius:10px" onclick="showToast('Study material uploaded!');closeModal('teacherModal')"><i class="fa fa-upload"></i> Upload Material</button>`
+  },
+  announce: {
+    title: 'Post Announcement',
+    html: `<div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-heading"></i> Announcement Title</label><input type="text" placeholder="e.g. Parent-Teacher Meeting Notice"></div>
+    <div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-tag"></i> Category</label><select><option>General Notice</option><option>Urgent</option><option>Event</option><option>Exam</option></select></div>
+    <div class="form-group" style="margin-bottom:14px"><label><i class="fa fa-users"></i> Audience</label><select><option>All Students</option><option>Class 10 Only</option><option>Teachers Only</option><option>Parents</option></select></div>
+    <div class="form-group" style="margin-bottom:20px"><label><i class="fa fa-align-left"></i> Message</label><textarea rows="4" placeholder="Write your announcement here..." style="resize:vertical"></textarea></div>
+    <button class="btn-portal teacher" style="width:100%;border-radius:10px" onclick="showToast('Announcement posted!');closeModal('teacherModal')"><i class="fa fa-bullhorn"></i> Post Announcement</button>`
+  }
+};
+
+function openTeacherDash(section) {
+  const content = teacherContent[section] || teacherContent['records'];
+  document.getElementById('teacherModalTitle').textContent = content.title;
+  document.getElementById('teacherModalBody').innerHTML = content.html;
+  openModal('teacherModal');
+}
+
+// ---- ANIMATE ON SCROLL ----
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.notice-card, .contact-card, .portal-card, .gallery-item, .mv-card, .qstat').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
